@@ -14,9 +14,12 @@
             padding-top: 40px;
             padding-left: 84px;
         }
-        input.texto-resultante{
+        input#texto-resultante{
             background: white;
-            background-image: url();
+            height: 500px;
+            width: 270px;
+            background-image: url(imagens/boneco.png);
+            background-repeat: no-repeat;
             border: none;
         }
     </style>
@@ -28,24 +31,64 @@
         </div>
     </header>
     <main>
-        <div>
+        <section>
             <label for="campo-texto"></label>
             <input type="text" name="" id="campo-texto" placeholder="Digite seu texto">
-        </div>
-        <div>
+        </section>
+        <section>
             <p>Apenas letras minusculas e sem acento.</p>
-        </div>
-        <div>
-            <input type="button" value="Criptografar">
+        </section>
+        <section>
+            <input type="button" value="Criptografar" onclick="botaoCripto">
             <input type="button" value="Descriptografar">
-        </div>
-        <div>
+        </section>
+        <section>
             <label for="texto-resultante"></label>
             <input type="text" name="" id="texto-resultante">
-        </div>
+        </section>
     </main>
     <footer>
-        <p class="copyright"> &copy; Desenolvido por Ana Caroline Alves</p>
+        <p class="copyright"> &copy; Desenvolvido por Ana Caroline Alves</p>
     </footer>
+    <script>
+
+        //As "chaves" de criptografia que utilizaremos são:
+        //A letra "e" é convertida para "enter"
+        //A letra "i" é convertida para "imes"
+        //A letra "a" é convertida para "ai"
+        //A letra "o" é convertida para "ober"
+        //A letra "u" é convertida para "ufat"
+        
+        
+        var textoCodifica = document.querySelector('#campo-texto');
+        var textoResul = document.querySelector('#texto-resultante');
+
+        function botaoCripto(){
+            var textoCriptado = cripto(textoCodifica.value);
+            textoResul = textoCriptado;
+            textoCodifica = "";
+        }
+        
+        function cripto(criptografar){
+            let matrizCodificacao = [["e", "enter"], ["i", 'imes'], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
+            criptografar = criptografar.toLowerCase(); //toLowerCase -> só pegar as letras minusculas
+
+            for(var i=0; i<matrizCodificacao.length; i++){
+                if(criptografar.includes(matrizCodificacao[i][0])){
+                    criptografar = criptografar.replaceAll(matrizCodificacao[i][0], matrizCodificacao[i][1])
+                    //replaceAll substitui uma matriz por outra
+                }
+            }
+            return criptografar;
+        }
+
+        //o includes serve para array e strings -> método boleano (retorna v ou f)
+
+        
+        //.onclick = cripto;
+
+        
+
+    </script>
 </body>
 </html>
