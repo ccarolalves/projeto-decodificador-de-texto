@@ -28,8 +28,8 @@
         </section>
 
         <section>
-            <textarea class="mensagem" cols="20" rows="10" id="textoDecodificado"></textarea>
-            <button class="btn-copiar" onclick="copiar()">Copiar</button>
+            <textarea class="mensagem" cols="20" rows="10"></textarea>
+            <button class="btn-copiar">Copiar</button>
         </section>
     </main>
 
@@ -86,13 +86,7 @@
             return stringDesencriptada;
         }
         
-        function copiar(){
-            var textoCodificado = document.querySelector('#textoDecodificao');
-            textoCodificado.select();
-            document.execCommand('copy');
-            document.getElementById('textoCodificado').value = "";
-
-        }
+        
     </script>
 </body>
 </html>
