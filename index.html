@@ -17,7 +17,7 @@
     
     <main>
         <section>
-            <textarea class="text-area" cols="41" rows="4" placeholder="Digite seu texto"></textarea>
+            <textarea class="text-area" cols="41" rows="4" placeholder="Digite seu texto" id="textoCodificado"></textarea>
             <div class="informacao">
                 <h6>Apenas letras minúculas e sem acento.</h6>
             </div>
@@ -28,8 +28,8 @@
         </section>
 
         <section>
-            <textarea class="mensagem" cols="20" rows="10"></textarea>
-            <button class="btn-copiar">Copiar</button>
+            <textarea class="mensagem" cols="20" rows="10" id="textoDecodificado"></textarea>
+            <button class="btn-copiar" onclick="copiar()">Copiar</button>
         </section>
     </main>
 
@@ -86,7 +86,13 @@
             return stringDesencriptada;
         }
         
+        function copiar(){
+            var textoCodificado = document.querySelector('#textoDecodificao');
+            textoCodificado.select();
+            document.execCommand('copy');
+            document.getElementById('textoCodificado').value = "";
 
+        }
     </script>
 </body>
 </html>
