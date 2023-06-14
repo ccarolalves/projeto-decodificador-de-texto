@@ -4,52 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decodificador de Texto</title>
-    <style>
-        body{
-            background-color: #F3F5FC;
-        }
-        div.imagem-logo{
-            display: block;
-            padding-top: 40px;
-            padding-left: 84px;
-        }
-        input#texto-resultante{
-            background: white;
-            height: 500px;
-            width: 270px;
-            background-image: url(imagens/boneco.png);
-            background-repeat: no-repeat;
-            border: none;
-        }
-    </style>
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="imagem-logo">
-            <img src="imagens/logo.png.png" alt="Logo da Alura">
-        </div>
+        <img class="logo-alura" src="imagens/logo.png.png" alt="Logo da Alura">
     </header>
+    
     <main>
         <section>
-            <label for="campo-texto"></label>
-            <input type="text" name="" id="campo-texto" placeholder="Digite seu texto">
+            <textarea class="text-area" cols="41" rows="4" placeholder="Digite seu texto"></textarea>
+            <div class="informacao">
+                <h6>Apenas letras minúculas e sem acento.</h6>
+            </div>
+            <div class="botoes">
+                <button class="btn-encriptar" onclick="btnEncriptar()">Criptografar</button>
+                <button class="btn-desencriptar" onclick="btnDesencriptar()">Descriptografar</button>
+            </div>
         </section>
+
         <section>
-            <p>Apenas letras minusculas e sem acento.</p>
-        </section>
-        <section>
-            <input type="button" value="Criptografar" onclick="botaoCripto">
-            <input type="button" value="Descriptografar">
-        </section>
-        <section>
-            <label for="texto-resultante"></label>
-            <input type="text" name="" id="texto-resultante">
+            <textarea class="mensagem" cols="20" rows="10"></textarea>
+            <button class="btn-copiar">Copiar</button>
         </section>
     </main>
-    <footer>
-        <p class="copyright"> &copy; Desenvolvido por Ana Caroline Alves</p>
-    </footer>
+
     <script>
 
         //As "chaves" de criptografia que utilizaremos são:
@@ -60,33 +43,48 @@
         //A letra "u" é convertida para "ufat"
         
         
-        var textoCodifica = document.querySelector('#campo-texto');
-        var textoResul = document.querySelector('#texto-resultante');
+        var textArea = document.querySelector('.text-area');
+        var mensagem = document.querySelector('.mensagem');
 
-        function botaoCripto(){
-            var textoCriptado = cripto(textoCodifica.value);
-            textoResul = textoCriptado;
-            textoCodifica = "";
+        function btnEncriptar(){
+            var textoEncriptado = encriptar(textArea.value);
+            mensagem.value = textoEncriptado;
+            textArea = "";
         }
         
-        function cripto(criptografar){
-            let matrizCodificacao = [["e", "enter"], ["i", 'imes'], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
-            criptografar = criptografar.toLowerCase(); //toLowerCase -> só pegar as letras minusculas
+        function encriptar(stringEncriptada){
+            let matrizCodigo = [["e", "enter"], ["i", 'imes'], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
+            stringEncriptada = stringEncriptada.toLowerCase(); //toLowerCase -> só pegar as letras minusculas
 
-            for(var i=0; i<matrizCodificacao.length; i++){
-                if(criptografar.includes(matrizCodificacao[i][0])){
-                    criptografar = criptografar.replaceAll(matrizCodificacao[i][0], matrizCodificacao[i][1])
+            for(var i=0; i<matrizCodigo.length; i++){
+                if(stringEncriptada.includes(matrizCodigo[i][0])){
+                    stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1])
                     //replaceAll substitui uma matriz por outra
                 }
             }
-            return criptografar;
+            return stringEncriptada;
         }
 
         //o includes serve para array e strings -> método boleano (retorna v ou f)
 
+        function btnDesencriptar(){
+            var textoDesencriptado = desencriptar(textArea.value);
+            mensagem.value = textoDesencriptado;
+            textArea = "";
+        }
         
-        //.onclick = cripto;
+        function desencriptar(stringDesencriptada){
+            let matrizCodigo = [["e", "enter"], ["i", 'imes'], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
+            stringDesencriptada = stringDesencriptada.toLowerCase(); //toLowerCase -> só pegar as letras minusculas
 
+            for(var i=0; i<matrizCodigo.length; i++){
+                if(stringDesencriptada.includes(matrizCodigo[i][1])){
+                    stringDesencriptada = stringDesencriptada.replaceAll(matrizCodigo[i][1], matrizCodigo[i][0])
+                    //replaceAll substitui uma matriz por outra
+                }
+            }
+            return stringDesencriptada;
+        }
         
 
     </script>
