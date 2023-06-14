@@ -28,8 +28,8 @@
         </section>
 
         <section>
-            <textarea class="mensagem" cols="20" rows="10"></textarea>
-            <button class="btn-copiar">Copiar</button>
+            <textarea class="mensagem" cols="20" rows="10" id="texto"></textarea>
+            <button class="btn-copiar" id="copy">Copiar</button>
         </section>
     </main>
 
@@ -86,7 +86,13 @@
             return stringDesencriptada;
         }
         
-        
+        function copy(){
+            var copyText = document.querySelector("#texto")
+            copyText.select();
+            document.execCommand("copy");
+        }
+        document.querySelector("#copy").addEventListener("click", copy);
+
     </script>
 </body>
 </html>
