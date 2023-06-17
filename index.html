@@ -68,9 +68,17 @@
         //o includes serve para array e strings -> método boleano (retorna v ou f)
 
         function btnDesencriptar(){
+            /*try {
+                var textoDesencriptado = desencriptar(textArea.value);
+                mensagem.value = textoDesencriptado;
+                textArea.value = "";
+            } catch(err) {
+                console.log("Aconteceu algum erro!", err.message)
+
+            }*/
             var textoDesencriptado = desencriptar(textArea.value);
-            mensagem.value = textoDesencriptado;
-            textArea.value = "";
+                mensagem.value = textoDesencriptado;
+                textArea.value = "";
         }
         
         function desencriptar(stringDesencriptada){
